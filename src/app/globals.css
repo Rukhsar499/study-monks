@@ -24,3 +24,57 @@ body {
 p{
   font-size: 14px;
 }
+@font-face {
+  font-family: 'Gilroy-Regular';
+  src: url('/fonts/gilroy-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: url('/fonts/Gilroy-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: url('/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@keyframes pulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.8;
+      }
+    }
+
+    /* Responsive sizes */
+    @media (max-width: 768px) {
+      .absolute span:nth-child(1) { width: 120px !important; height: 120px !important; }
+      .absolute span:nth-child(2) { width: 180px !important; height: 180px !important; }
+      .absolute span:nth-child(3) { width: 250px !important; height: 250px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .absolute span:nth-child(1) { width: 80px !important; height: 80px !important; }
+      .absolute span:nth-child(2) { width: 120px !important; height: 120px !important; }
+      .absolute span:nth-child(3) { width: 160px !important; height: 160px !important; }
+    }
+h1 {
+    font-size: 50px !important;
+    font-family: gilroy-regular;
+    margin-bottom: 20px !important;
+}
+h2{
+   font-family: Gilroy-Bold;
+}
+.mb{
+  margin-bottom: 50px;
+}
