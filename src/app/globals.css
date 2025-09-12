@@ -17,8 +17,7 @@
 }
 
 body {
-  background: #fff;
-  color: var(--foreground);
+ 
   font-family: 'Poppins', sans-serif;
 }
 p{
@@ -72,7 +71,7 @@ h1 {
     font-family: gilroy-regular;
     margin-bottom: 20px !important;
 }
-h2{
+h2, h4{
    font-family: Gilroy-Bold;
 }
 .mb{
