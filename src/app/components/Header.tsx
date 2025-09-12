@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <header className="bg-white shadow-md fixed top-0 left-0 w-full z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
                 <div className="flex justify-between h-16 items-center">
                     {/* Logo */}
                     <div className="flex-shrink-0">
@@ -21,10 +21,10 @@ export default function Header() {
 
                     {/* Desktop Menu */}
                     <nav className="hidden md:flex space-x-8">
-                        <Link href="/" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/" className="text-black-700 hover:text-blue-600 text-sm">
                             Home
                         </Link>
-                        <Link href="/our-story" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/our-story" className="text-black-700 hover:text-blue-600 text-sm">
 
                             Our Story
                         </Link>
@@ -32,7 +32,7 @@ export default function Header() {
                         <div className="relative">
                             <button
                                 onClick={() => setIsOpen(!isOpen)}
-                                className="flex items-center text-gray-700 hover:text-blue-600 gap-1"
+                                className="text-sm flex items-center text-black-700 hover:text-blue-600 gap-1"
                             >
                                 The Cambridge Pathway
                                 {isOpen ? (
@@ -46,36 +46,30 @@ export default function Header() {
                                 <div className="absolute top-full left-0 mt-2 w-56 bg-white shadow-lg rounded-lg py-2 z-50">
                                     <Link
                                         href="/plans-and-pricing/primary"
-                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                        className="block px-4 py-2 text-black-700 hover:bg-gray-100"
                                     >
                                         Primary
                                     </Link>
                                     <Link
                                         href="/plans-and-pricing/secondary"
-                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                                        className="block px-4 py-2 text-black-700 hover:bg-gray-100"
                                     >
                                         Secondary
-                                    </Link>
-                                    <Link
-                                        href="/plans-and-pricing/advanced"
-                                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                                    >
-                                        Advanced
                                     </Link>
                                 </div>
                             )}
                         </div>
-                        <Link href="/mentors" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/mentors" className="text-black-700 hover:text-blue-600 text-sm">
                             Our Mentors
                         </Link>
-                        <Link href="/blogs" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/blogs" className="text-black-700 hover:text-blue-600 text-sm">
                             Resource Hub
                         </Link>
-                        <Link href="/careers" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/careers" className="text-black-700 hover:text-blue-600 text-sm">
 
                             Career
                         </Link>
-                        <Link href="/plans-and-pricing" className="text-gray-700 hover:text-blue-600">
+                        <Link href="/plans-and-pricing" className="text-black-700 hover:text-blue-600 text-sm">
                             Plans & Pricing
                         </Link>
                     </nav>
@@ -84,8 +78,12 @@ export default function Header() {
                     <div className="hidden md:block">
                         <Link
                             href="/free-trial"
-                            className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+                            style={{
+                                background: 'linear-gradient(90deg, rgb(0 31 63 / 91%) 0%, rgb(0, 61, 124) 50%)',
+                            }}
+                            className="px-8 py-2 text-sm rounded-3xl text-white font-medium flex items-center gap-2"
                         >
+                            <Image src="/assets/img/login.png" alt="Beyuvana" width={20} height={20} />
                             Free Trial
                         </Link>
                     </div>
