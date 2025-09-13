@@ -7,6 +7,7 @@ import Rings from "../app/components/Rings";
 import Compass from "../app/components/Compass";
 import MobSlider from "../app/components/MobSlider";
 import CambridgeSection from "../app/components/CambridgeSection";
+import Pillar from "../app/components/Pillar";
 
 export default function Home() {
   const data = [
@@ -119,6 +120,7 @@ export default function Home() {
 
       <Compass items={data} />
       <CambridgeSection />
+      <Pillar />
       <Footer />
     </>
   );

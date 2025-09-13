@@ -38,7 +38,7 @@ export default function CambridgeSection() {
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="bg-white rounded-none shadow-sm p-6 text-left group transition"
+                className="bg-white rounded-none rounded-br-4xl shadow-sm px-6 py-8 text-left group transition hover:bg-[#F6F9FF]"
               >
                 <h3 className="text-lg md:text-xl font-bold text-[#001F3F] mb-2">
                   {card.title}
@@ -49,9 +49,9 @@ export default function CambridgeSection() {
                 <p className="text-gray-600 mb-6">{card.content}</p>
 
                 {/* Button */}
-                <button className="w-15 h-15 text-[12px] flex items-center justify-center rounded-full border border-black text-black transition group-hover:bg-[#001F3F] group-hover:text-white">
-                  <span className="group-hover:hidden ">{card.btn}</span>
-                  <span className="hidden group-hover:block text-lg">→</span>
+                <button className="w-15 h-15 text-[12px] flex items-center justify-center rounded-full border border-black text-black transition group-hover:bg-[#003C79] group-hover:text-white">
+                  <span className="group-hover:hidden">{card.btn}</span>
+                  <span className="hidden group-hover:block text-2xl -rotate-45">→</span>
                 </button>
               </div>
             ))}
