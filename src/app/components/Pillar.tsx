@@ -40,7 +40,8 @@ export default function OurPromise() {
   const [active, setActive] = useState<string>("mindful");
 
   return (
-    <section className="container mx-auto grid md:grid-cols-2 gap-10 py-12">
+    <section className="mb-[30px] md:mb-[50px]">
+        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10">
       {/* Left Accordion */}
       <div>
         <h2 className="text-2xl font-bold mb-4">Our Promise</h2>
@@ -68,27 +69,58 @@ export default function OurPromise() {
         ))}
       </div>
 
-      {/* Right Image */}
+      {/* Right Image with Text Labels */}
       <div className="relative flex justify-center items-center">
+        {/* Base Image */}
         <Image
-          src="/assets/img/pillars.png" // apna uploaded image yaha rakhna (public folder me)
+          src="/assets/img/macs.webp"
           alt="Four Pillars"
           width={500}
           height={500}
-          className={`transition-all duration-700 ease-in-out ${
-            active === "mindful"
-              ? "scale-105"
-              : active === "curiosity"
-              ? "rotate-3"
-              : active === "serenity"
-              ? "translate-y-2"
-              : "translate-x-2"
-          }`}
+          className="relative z-0 rounded-4xl border-10 border-[#ccdaff]"
         />
-        {/* Optional: active pillar label overlay */}
-        <span className="absolute bottom-4 bg-blue-600 text-white text-sm px-3 py-1 rounded-full shadow">
-          {pillars.find((p) => p.id === active)?.title}
+
+        {/* Text Labels positioned over image */}
+        <span
+          className={`absolute top-[8%] left-1/2 -translate-x-1/2 text-sm font-bold ${
+            active === "mindful"
+              ? "text-blue-600 animate-pulse"
+              : "text-gray-800"
+          }`}
+        >
+          Mindful Mastery
         </span>
+
+        <span
+          className={`absolute top-1/2 left-[5%] -translate-y-1/2 text-sm font-bold ${
+            active === "curiosity"
+              ? "text-blue-600 animate-pulse"
+              : "text-gray-800"
+          }`}
+        >
+          Guided Curiosity
+        </span>
+
+        <span
+          className={`absolute top-1/2 right-[5%] -translate-y-1/2 text-sm font-bold ${
+            active === "serenity"
+              ? "text-blue-600 animate-pulse"
+              : "text-gray-800"
+          }`}
+        >
+          Digital Serenity
+        </span>
+
+        <span
+          className={`absolute bottom-[8%] left-1/2 -translate-x-1/2 text-sm font-bold ${
+            active === "confidence"
+              ? "text-blue-600 animate-pulse"
+              : "text-gray-800"
+          }`}
+        >
+          Expressive Confidence
+        </span>
+      </div>
       </div>
     </section>
   );
