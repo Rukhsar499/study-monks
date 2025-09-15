@@ -9,6 +9,7 @@ import MobSlider from "../app/components/MobSlider";
 import CambridgeSection from "../app/components/CambridgeSection";
 import Pillar from "../app/components/Pillar";
 import BottomAccordion from "../app/components/BottomAccordion";
+import Testimonial from "../app/components/Testimonial";
 
 export default function Home() {
   const data = [
@@ -122,6 +123,7 @@ export default function Home() {
       <Compass items={data} />
       <CambridgeSection />
       <Pillar />
+      <Testimonial />
        <BottomAccordion />
       <Footer />
     </>
