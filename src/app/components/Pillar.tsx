@@ -82,7 +82,7 @@ export default function OurPromise() {
 
                     {/* Text Labels positioned over image */}
                     <span
-                        className={`absolute top-[7%] left-[220px] active-text -translate-x-1/2 text-sm uppercase font-semibold ${active === "mindful"
+                        className={`absolute top-[7%] left-[220px] active-text -translate-x-1/2 text-[13px] uppercase font-semibold ${active === "mindful"
                                 ? "animate-pulseGlow"
                                 : "text-[#0000009c] hover:animate-pulseGlow"
                             }`}
@@ -91,7 +91,7 @@ export default function OurPromise() {
                     </span>
 
                     <span
-                        className={`absolute top-1/2 left-[5%] -translate-y-1/2 text-sm uppercase active-text font-semibold ${active === "curiosity"
+                        className={`absolute top-[38%] left-[29%] -translate-y-1/2 text-[13px] uppercase active-text font-semibold ${active === "curiosity"
                              ? "animate-pulseGlow"
                                 : "text-[#0000009c] hover:animate-pulseGlow"
                             }`}
@@ -100,7 +100,7 @@ export default function OurPromise() {
                     </span>
 
                     <span
-                        className={`absolute top-1/2 right-[5%] -translate-y-1/2 text-sm uppercase active-text font-semibold ${active === "serenity"
+                        className={`absolute top-[40%] right-[27%] -translate-y-1/2 text-[13px] uppercase active-text font-semibold ${active === "serenity"
                            ? "animate-pulseGlow"
                                 : "text-[#0000009c] hover:animate-pulseGlow"
                             }`}
@@ -109,12 +109,12 @@ export default function OurPromise() {
                     </span>
 
                     <span
-                        className={`absolute bottom-[8%] left-1/2 -translate-x-1/2 text-sm uppercase active-text font-semibold ${active === "confidence"
+                        className={`absolute bottom-[28%] right-[22%] -translate-x-1/2 text-[13px] uppercase active-text font-semibold ${active === "confidence"
                              ? "animate-pulseGlow"
                                 : "text-[#0000009c] hover:animate-pulseGlow"
                             }`}
                     >
-                        Expressive Confidence
+                        Expressive <br /> Confidence
                     </span>
                 </div>
             </div>

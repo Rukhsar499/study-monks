@@ -74,7 +74,7 @@ export default function ParentsTestimonial() {
         >
           {testimonials.map((t) => (
             <SplideSlide key={t.id}>
-              <div className="bg-blue-50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+              <div className="bg-blue-50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6  ">
                 {/* Left Side */}
                 <div className="flex-1">
                   <p className="text-lg font-semibold text-gray-800 mb-3">
@@ -98,7 +98,7 @@ export default function ParentsTestimonial() {
                 </div>
 
                 {/* Right Side (Thumbnail + Play Button) */}
-                <div className="relative w-full md:w-80">
+                <div className="relative w-full md:w-70">
                   <Image
                     src={t.thumbnail}
                     alt="testimonial"
