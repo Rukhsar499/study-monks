@@ -23,7 +23,7 @@ export default function CambridgeSection() {
   return (
     <section className="mb-[30px] md:mb-[50px]">
       <div className="container mx-auto px-4">
-        <div className="bg-[#D9E6FF] py-16 px-6 md:px-12 rounded-xl text-center mx-auto w-[90%]">
+        <div className="bg-[#D9E6FF] py-16 px-6 md:px-12 rounded-xl text-center mx-auto">
           {/* Heading */}
           <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F] mb-3">
             Tailored Guidance For Your Child&apos;s Cambridge Stage
@@ -38,7 +38,7 @@ export default function CambridgeSection() {
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="bg-white rounded-none rounded-br-4xl shadow-sm px-6 py-8 text-left group transition hover:bg-[#F6F9FF]"
+                className="bg-white rounded-none rounded-br-4xl shadow-sm px-12 py-12 text-left group transition hover:bg-[#F6F9FF]"
               >
                 <h3 className="text-lg md:text-xl font-bold text-[#001F3F] mb-2">
                   {card.title}
