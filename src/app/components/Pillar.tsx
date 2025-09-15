@@ -93,7 +93,7 @@ export default function OurPromise() {
 
           <span
             className={`absolute text-[12px] md:text-[13px] uppercase font-semibold 
-              top-[35%] left-[30%] md:left-[29%] 
+              top-[34%] left-[30%] md:left-[29%] 
               ${active === "curiosity" ? "pulse-glow" : "text-[#0000009c]"}`}
           >
             Guided <br /> Curiosity
