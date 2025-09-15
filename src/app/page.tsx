@@ -10,6 +10,7 @@ import CambridgeSection from "../app/components/CambridgeSection";
 import Pillar from "../app/components/Pillar";
 import BottomAccordion from "../app/components/BottomAccordion";
 import Testimonial from "../app/components/Testimonial";
+import Snapshot from "../app/components/Snapshot";
 
 export default function Home() {
   const data = [
@@ -123,8 +124,20 @@ export default function Home() {
       <Compass items={data} />
       <CambridgeSection />
       <Pillar />
+      <section className="bg-[#172437] md:px-2 px-2 py-6 md:py-25 mb-[30px] md:mb-[50px] mt-[100px]  text-center">
+        <div className="container mx-auto px-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-[#fff]">The Heart of Our Promise: The Mentors</h2>
+          <h3 className="text-[#ffc40c] text-[130px]">&lt; 20%</h3>
+          <h4 className="text-[#fff] text-[30px] mb-4">Mentor Acceptance Rate</h4>
+          <p className="text-[#fff] md:w-[60%] mx-auto w-[100%] mt-4">
+            Our mentors are the living embodiment of our promise. They are handpicked not only for their deep subject expertise but for their rare ability to guide and nurture young minds. Fewer than 20% of applicants meet our rigorous standards for both academic excellence and empathetic guidance.
+          </p>
+        </div>
+      </section>
+       <Snapshot />
       <Testimonial />
-       <BottomAccordion />
+     
+      <BottomAccordion />
       <Footer />
     </>
   );
