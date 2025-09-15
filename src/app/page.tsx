@@ -12,6 +12,7 @@ import BottomAccordion from "../app/components/BottomAccordion";
 import Testimonial from "../app/components/Testimonial";
 import Snapshot from "../app/components/Snapshot";
 
+
 export default function Home() {
   const data = [
     {
@@ -138,6 +139,7 @@ export default function Home() {
       <Testimonial />
      
       <BottomAccordion />
+     
       <Footer />
     </>
   );
