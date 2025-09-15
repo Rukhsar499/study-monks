@@ -25,7 +25,7 @@ export default function CambridgeSection() {
       <div className="container mx-auto px-4">
         <div className="bg-[#D9E6FF] py-16 px-6 md:px-12 rounded-xl text-center mx-auto">
           {/* Heading */}
-          <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F] mb-3">
+          <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F] mb-3 text-center">
             Tailored Guidance For Your Child&apos;s Cambridge Stage
           </h2>
           <p className="text-gray-600 mb-10 max-w-2xl mx-auto">

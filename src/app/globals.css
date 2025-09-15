@@ -72,10 +72,10 @@ h2, h4, h3{
 .mb{
   margin-bottom: 50px;
 }
-.active-text {
-    color: #0000009c;
-    animation: pulseGlow 1.5s ease-in-out infinite;
-  }
+.pulse-glow {
+  color: #0000009c;
+  animation: pulseGlow 1.5s infinite ease-in-out;
+}
 
   @keyframes pulseGlow {
     0% { 

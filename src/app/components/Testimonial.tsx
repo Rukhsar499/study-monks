@@ -58,7 +58,7 @@ export default function ParentsTestimonial() {
   return (
     <section className="mb-[30px] md:mb-[50px]">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-3xl font-bold text-gray-800 mb-8">
+        <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F] mb-3 text-center">
           Parent&apos;s Testimonial
         </h2>
 
