@@ -32,6 +32,7 @@ export default function CambridgePath() {
             unshakable confidence to use it. Let’s build their roadmap to success
             today.
           </p>
+          <div className="">
           <button className="bg-[#B2BF4D] text-[#000] text-left text-sm px-4 py-3 rounded-xl"
           style={{ boxShadow: "0 4px 4px rgba(0, 0, 0, .39)" }}>
             Create My Child’s <br /> Success Plan
@@ -39,7 +40,7 @@ export default function CambridgePath() {
         </div>
 
         {/* Right Image Section */}
-        <div className=" flex justify-center md:justify-end">
+        <div className="flex justify-center md:justify-end -mt-17">
           <Image
             src="/assets/img/mummy.webp"
             alt="Mother and Child"
@@ -47,6 +48,7 @@ export default function CambridgePath() {
             height={250}
             className="relative z-10"
           />
+        </div>
         </div>
       </div>
     </section>
