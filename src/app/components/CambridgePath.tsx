@@ -4,12 +4,12 @@ import Image from "next/image";
 
 export default function CambridgePath() {
   return (
-    <section className="relative border border-gray-100 rounded-md overflow-hidden px-6 py-2 md:py-8">
+    <section className="relative border border-gray-100  overflow-hidden px-6  md:pt-6 pb-3">
   <Image
     src="/assets/img/mummy-bg.webp"
     alt="background"
     fill
-    className="absolute inset-0 object-cover -z-10"
+   className="absolute inset-0 -z-10"
   />
       {/* Background gradient circle */}
       <div className="absolute top-0 right-0 w-[300px] h-[260px] bg-white/50 rounded-full blur-2xl -z-0"></div>
@@ -32,7 +32,8 @@ export default function CambridgePath() {
             unshakable confidence to use it. Let’s build their roadmap to success
             today.
           </p>
-          <button className="bg-[#B2BF4D] text-[#000] text-left text-sm px-4 py-3 rounded-xl shadow-xl">
+          <button className="bg-[#B2BF4D] text-[#000] text-left text-sm px-4 py-3 rounded-xl"
+          style={{ boxShadow: "0 4px 4px rgba(0, 0, 0, .39)" }}>
             Create My Child’s <br /> Success Plan
           </button>
         </div>
@@ -42,8 +43,8 @@ export default function CambridgePath() {
           <Image
             src="/assets/img/mummy.webp"
             alt="Mother and Child"
-            width={360}
-            height={260}
+            width={350}
+            height={250}
             className="relative z-10"
           />
         </div>
