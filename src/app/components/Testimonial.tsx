@@ -36,9 +36,10 @@ const testimonials: Testimonial[] = [
         title: "Proven Results",
         text: "As a parent, I'm highly satisfied. We've seen a definite improvement not just in her grades, but in her confidence to express her own ideas.",
       },
+
     ],
-    thumbnail: "/assets/img/test.png", // 👈 yahan apni image path do
-    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4", // 👈 apna video URL lagao
+    thumbnail: "/assets/img/test.png",
+    videoUrl: "assets/video/tetsione.mp4",
     name: "Ditya's Story",
   },
 ];
@@ -74,19 +75,19 @@ export default function ParentsTestimonial() {
         >
           {testimonials.map((t) => (
             <SplideSlide key={t.id}>
-              <div className="bg-blue-50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6  ">
+              <div className="bg-blue-50 rounded-3xl md: px-10 py-20 flex flex-col md:flex-row items-center gap-6">
                 {/* Left Side */}
-                <div className="flex flex-col md:flex-row justify-between gap-6">
-                  <div className="w-full md:w-[70%]">
-                    <p className="text-lg font-semibold text-gray-800 mb-3">
+                <div className="flex flex-col md:flex-row justify-between gap-8">
+                  <div className="w-full md:w-[65%]">
+                    <h5 className="text-[22px] text-[#212529] mb-3 tfd font-bold">
                       “{t.quote}”
-                    </p>
+                    </h5>
                     <p className="text-gray-600 mb-4">{t.description}</p>
 
                     <ul className="space-y-3">
                       {t.points.map((point, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <span className=""><Image
+                          <span className="flex-shrink-0 w-6 h-6"><Image
                             src="/assets/img/tick-square.png"
                             alt="testimonial"
                             className=""
@@ -104,7 +105,7 @@ export default function ParentsTestimonial() {
                   </div>
 
                   {/* Right Side (Thumbnail + Play Button) */}
-                  <div className="relative w-full md:w-[30%]">
+                  <div className="relative w-full md:w-[35%]">
                     <Image
                       src={t.thumbnail}
                       alt="testimonial"
@@ -115,9 +116,15 @@ export default function ParentsTestimonial() {
                       onClick={() => setSelectedVideo(t.videoUrl)}
                       className="absolute inset-0 flex items-center justify-center"
                     >
-                      <Play className="w-14 h-14 text-white bg-black bg-opacity-60 p-3 rounded-full hover:scale-110 transition" />
+                      <Image
+                        src="/assets/img/play-btn.png"
+                        alt="Play"
+                        width={70}
+                        height={70}
+                        className="animate-playpulse absolute top-1/2 left-1/2 "
+                      />
                     </button>
-                    <p className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-white font-semibold">
+                    <p className="absolute bottom-1/3 left-1/2 transform -translate-x-1/2 text-white font-semibold">
                       {t.name}
                     </p>
                   </div>
@@ -130,8 +137,8 @@ export default function ParentsTestimonial() {
 
       {/* Video Modal */}
       {selectedVideo && (
-        <div className="fixed inset-0  flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-3xl">
+        <div className="fixed inset-0 bg-[#000000c2] bg-opacity-40 flex items-center justify-center z-50 p-4">
+          <div className="relative w-full max-w-sm">
             <button
               onClick={handleClose}
               className="absolute -top-10 right-0 text-white text-3xl"

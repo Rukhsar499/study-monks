@@ -72,6 +72,10 @@ h2, h4, h3{
 .mb{
   margin-bottom: 50px;
 }
+.tfd{
+   font-family: 'Gilroy-Medium';
+   line-height: 30px;
+}
 .pulse-glow {
   color: #0000009c;
   animation: pulseGlow 1.5s infinite ease-in-out;
@@ -92,3 +96,19 @@ h2, h4, h3{
       text-shadow: 0 0 0px rgba(0, 255, 128, 0.2);
     }
   }
+
+.animate-playpulse {
+  animation: playpulse 1.2s 
+linear infinite alternate-reverse;
+}
+  @keyframes playpulse {
+  0%, 50% {
+    transform: translateX(-50%) translateY(-50%) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) scale(1);
+    opacity: 1;
+  }
+}
+      
