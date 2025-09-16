@@ -60,7 +60,7 @@ const accordionData: AccordionItem[] = [
 ];
 
 export default function BottomAccordion() {
-    const [expanded, setExpanded] = useState<string>("panel2");
+    const [expanded, setExpanded] = useState<string>("panel1");
 
     const togglePanel = (id: string) => {
         setExpanded(expanded === id ? "" : id);

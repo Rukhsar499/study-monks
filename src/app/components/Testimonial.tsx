@@ -57,7 +57,7 @@ export default function ParentsTestimonial() {
 
   return (
     <section className="mb-[30px] md:mb-[50px]">
-      <div className="container mx-auto px-4">
+      <div className="max-w-screen-xl container mx-auto px-4">
         <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F] mb-3 text-center">
           Parent&apos;s Testimonial
         </h2>
@@ -68,7 +68,7 @@ export default function ParentsTestimonial() {
             perPage: 1,
             autoplay: true,
             interval: 5000,
-            arrows: true,
+            arrows: false,
             pagination: true,
           }}
         >
@@ -76,44 +76,51 @@ export default function ParentsTestimonial() {
             <SplideSlide key={t.id}>
               <div className="bg-blue-50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6  ">
                 {/* Left Side */}
-                <div className="flex-1">
-                  <p className="text-lg font-semibold text-gray-800 mb-3">
-                    “{t.quote}”
-                  </p>
-                  <p className="text-gray-600 mb-4">{t.description}</p>
+                <div className="flex flex-col md:flex-row justify-between gap-6">
+                  <div className="w-full md:w-[70%]">
+                    <p className="text-lg font-semibold text-gray-800 mb-3">
+                      “{t.quote}”
+                    </p>
+                    <p className="text-gray-600 mb-4">{t.description}</p>
 
-                  <ul className="space-y-3">
-                    {t.points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-blue-600">✔</span>
-                        <p>
-                          <span className="font-semibold text-gray-800">
-                            {point.title}:
-                          </span>{" "}
-                          {point.text}
-                        </p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                    <ul className="space-y-3">
+                      {t.points.map((point, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className=""><Image
+                            src="/assets/img/tick-square.png"
+                            alt="testimonial"
+                            className=""
+                            width={20} height={20}
+                          /></span>
+                          <p>
+                            <span className="font-semibold text-gray-800">
+                              {point.title}:
+                            </span>{" "}
+                            {point.text}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                {/* Right Side (Thumbnail + Play Button) */}
-                <div className="relative w-full md:w-70">
-                  <Image
-                    src={t.thumbnail}
-                    alt="testimonial"
-                    className="w-full rounded-xl"
-                    width={400} height={300}
-                  />
-                  <button
-                    onClick={() => setSelectedVideo(t.videoUrl)}
-                    className="absolute inset-0 flex items-center justify-center"
-                  >
-                    <Play className="w-14 h-14 text-white bg-black bg-opacity-60 p-3 rounded-full hover:scale-110 transition" />
-                  </button>
-                  <p className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-white font-semibold">
-                    {t.name}
-                  </p>
+                  {/* Right Side (Thumbnail + Play Button) */}
+                  <div className="relative w-full md:w-[30%]">
+                    <Image
+                      src={t.thumbnail}
+                      alt="testimonial"
+                      className="w-full rounded-xl"
+                      width={400} height={300}
+                    />
+                    <button
+                      onClick={() => setSelectedVideo(t.videoUrl)}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <Play className="w-14 h-14 text-white bg-black bg-opacity-60 p-3 rounded-full hover:scale-110 transition" />
+                    </button>
+                    <p className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-white font-semibold">
+                      {t.name}
+                    </p>
+                  </div>
                 </div>
               </div>
             </SplideSlide>
