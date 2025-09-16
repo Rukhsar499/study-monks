@@ -60,7 +60,7 @@ const accordionData: AccordionItem[] = [
 ];
 
 export default function BottomAccordion() {
-    const [expanded, setExpanded] = useState<string>("panel1");
+    const [expanded, setExpanded] = useState<string>("panel2");
 
     const togglePanel = (id: string) => {
         setExpanded(expanded === id ? "" : id);
@@ -68,9 +68,9 @@ export default function BottomAccordion() {
 
     return (
         <section className="faq mb-[30px] md:mb-[50px]">
-            <div className="container mx-auto">
+            <div className="container max-w-screen-xl mx-auto px-4">
                 <div className="flex flex-col md:flex-row justify-between gap-6">
-                    <div className="w-full md:w-[55%]">
+                    <div className="w-full md:w-[60%]">
                         <h2 className="text-2xl md:text-4xl font-bold text-[#001F3F]  text-center mb-3">
                             Frequently Asked Questions
                         </h2>
@@ -120,7 +120,7 @@ export default function BottomAccordion() {
                             ))}
                         </div>
                     </div>
-                    <div className="w-full md:w-[40%]">
+                    <div className="w-full md:w-[45%]">
                         <CambridgePath />
                     </div>
                 </div>

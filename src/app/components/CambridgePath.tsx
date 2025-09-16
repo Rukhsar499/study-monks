@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function CambridgePath() {
   return (
-    <section className="relative border border-gray-200 rounded-md overflow-hidden px-6 py-10 md:py-14">
+    <section className="relative border border-gray-100 rounded-md overflow-hidden px-6 py-2 md:py-8">
   <Image
     src="/assets/img/mummy-bg.webp"
     alt="background"
@@ -12,7 +12,7 @@ export default function CambridgePath() {
     className="absolute inset-0 object-cover -z-10"
   />
       {/* Background gradient circle */}
-      <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-white/50 rounded-full blur-2xl -z-0"></div>
+      <div className="absolute top-0 right-0 w-[300px] h-[260px] bg-white/50 rounded-full blur-2xl -z-0"></div>
 
       <div className="relative z-10 items-center">
         {/* Left Text Section */}
@@ -32,7 +32,7 @@ export default function CambridgePath() {
             unshakable confidence to use it. Let’s build their roadmap to success
             today.
           </p>
-          <button className="bg-[#a2c24d] text-[#172437] font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-[#8db740] transition">
+          <button className="bg-[#B2BF4D] text-[#000] text-left text-sm px-4 py-3 rounded-xl shadow-xl">
             Create My Child’s <br /> Success Plan
           </button>
         </div>
@@ -42,8 +42,8 @@ export default function CambridgePath() {
           <Image
             src="/assets/img/mummy.webp"
             alt="Mother and Child"
-            width={400}
-            height={400}
+            width={360}
+            height={260}
             className="relative z-10"
           />
         </div>
