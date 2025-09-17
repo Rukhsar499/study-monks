@@ -11,13 +11,13 @@ interface MenuItem {
 
 const menuItems: MenuItem[] = [
   { name: "Dashboard", icon: <FaThLarge />, link: "/lms/dashboard" },
-  { name: "My Videos", icon: <FaVideo />, link: "/studymonks/lms/videos" },
-  { name: "My Live Classes", icon: <FaChalkboardTeacher />, link: "/studymonks/lms/live-classes" },
-  { name: "Worksheets", icon: <FaFileAlt />, link: "/studymonks/lms/worksheets" },
+  { name: "My Videos", icon: <FaVideo />, link: "/lms/videos" },
+  { name: "My Live Classes", icon: <FaChalkboardTeacher />, link: "/lms/live-classes" },
+  { name: "Worksheets", icon: <FaFileAlt />, link: "/lms/worksheets" },
   { name: "MCQ Practices", icon: <FaClipboardList />, link: "/studymonks/lms/mcq" },
-  { name: "Notices", icon: <FaBook />, link: "/studymonks/lms/notices" },
-  { name: "Order History", icon: <FaShoppingCart />, link: "/studymonks/lms/orders" },
-  { name: "My Referrals", icon: <FaUsers />, link: "/studymonks/lms/referrals" },
+  { name: "Notices", icon: <FaBook />, link: "/lms/notices" },
+  { name: "Order History", icon: <FaShoppingCart />, link: "/lms/orders" },
+  { name: "My Referrals", icon: <FaUsers />, link: "/lms/referrals" },
   { name: "Logout", icon: <FaSignOutAlt />, link: "/logout" },
 ];
 
