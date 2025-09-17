@@ -4,18 +4,22 @@ import Sidebar from "./components/Sidebar";
 export const metadata: Metadata = {
     title: 'dashboard',
     description: 'dashboard Study Monks',
-  }
+}
 
 
 export default function dashboardLayout({
     children,
-  }: {
+}: {
     children: React.ReactNode
-  }) {
+}) {
     return (
         <>
-        <Sidebar/>
-          {children}
+            <div className="bg-gray-50">
+                <Sidebar />
+
+
+                {children}
+            </div>
         </>
     )
 }

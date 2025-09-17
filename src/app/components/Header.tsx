@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Plus, Minus } from "lucide-react";
+import Login from "./Login";
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -76,7 +77,7 @@ export default function Header() {
 
                     {/* Free Trial Button */}
                     <div className="hidden md:block">
-                        <Link
+                        {/* <Link
                             href="/free-trial"
                             style={{
                                 background: 'linear-gradient(90deg, rgb(0 31 63 / 91%) 0%, rgb(0, 61, 124) 50%)',
@@ -85,7 +86,8 @@ export default function Header() {
                         >
                             <Image src="/assets/img/login.png" alt="Beyuvana" width={20} height={20} />
                             Free Trial
-                        </Link>
+                        </Link> */}
+                         <Login/>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -136,12 +138,13 @@ export default function Header() {
                         <Link href="/contact" className="block text-gray-700 hover:text-blue-600">
                             Contact
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/free-trial"
                             className="block px-4 py-2 rounded-lg bg-blue-600 text-white text-center font-medium hover:bg-blue-700 transition"
                         >
                             Free Trial
-                        </Link>
+                        </Link> */}
+                        <Login/>
                     </nav>
                 </div>
             )}

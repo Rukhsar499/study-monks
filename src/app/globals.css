@@ -15,9 +15,7 @@ body {
  
   font-family: 'Poppins', sans-serif;
 }
-p{
-  font-size: 14px;
-}
+
 @font-face {
   font-family: 'Gilroy-Regular';
   src: url('/fonts/gilroy-regular.ttf') format('truetype');
