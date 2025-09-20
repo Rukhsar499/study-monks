@@ -12,16 +12,18 @@ export default function LoginModal() {
             {/* Trigger Button */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+                className="cursor-pointer flex items-center gap-1 px-8 py-[5px] rounded-3xl text-[14px] text-white font-medium
+             bg-gradient-to-r from-[rgba(0,31,63,1)] to-[rgba(0,61,124,1)] 
+             hover:opacity-90 transition shadow-2xl;"
             >
-                <Image src="/assets/img/login.png" alt="Beyuvana" width={20} height={20} />
+                <Image src="/assets/img/login.png" alt="Study Monks" width={20} height={20} />
                 <span>Login</span>
             </button>
 
             {/* Modal */}
             {isOpen && (
                 <div className="fixed inset-0 z-40 flex items-center justify-center bg-[#001a346e] bg-opacity-50">
-                    <div className="bg-[#EFF7FF] rounded-lg shadow-lg w-full max-w-3xl flex overflow-hidden relative px-6 py-8">
+                    <div className="bg-[#EFF7FF] rounded-lg shadow-lg w-full max-w-3xl flex relative px-6 py-8">
                         {/* Left Image */}
                         <div className="w-1/2 hidden md:block">
                             <Image
@@ -38,7 +40,7 @@ export default function LoginModal() {
                             {/* Close Button */}
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="absolute -top-10 -right-12 z-50 text-[#fff] bg-[#003C79] font-light w-15 h-15 rounded-4xl hover:text-gray-500 text-2xl"
+                                className="cursor-pointer absolute -top-10 -right-12 z-50 text-[#fff] bg-[#003C79] font-light w-12 h-12 rounded-4xl hover:text-gray-500 text-2xl"
                             >
                                 &times;
                             </button>
