@@ -38,7 +38,7 @@ export default function LoginModal() {
                             {/* Close Button */}
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="absolute -top-10 -right-12 z-50 text-[#fff] bg-[#003C79] font-light w-15 h-15 rounded-4xl hover:text-gray-500 text-2xl font-bold"
+                                className="absolute -top-10 -right-12 z-50 text-[#fff] bg-[#003C79] font-light w-15 h-15 rounded-4xl hover:text-gray-500 text-2xl"
                             >
                                 &times;
                             </button>
