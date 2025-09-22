@@ -1,53 +1,79 @@
 "use client";
 import { useState } from "react";
-import React from "react";
-import { FaVideo, FaChalkboardTeacher, FaFileAlt, FaClipboardList, FaBook, FaShoppingCart, FaUsers, FaSignOutAlt, FaThLarge } from "react-icons/fa";
+import { Menu, X, Bell } from "lucide-react";
 
-interface MenuItem {
-  name: string;
-  icon: React.ReactNode; // ✅ JSX.Element ki jagah ye use karo
-  link: string;
-}
-
-const menuItems: MenuItem[] = [
-  { name: "Dashboard", icon: <FaThLarge />, link: "/lms/dashboard" },
-  { name: "My Videos", icon: <FaVideo />, link: "/lms/videos" },
-  { name: "My Live Classes", icon: <FaChalkboardTeacher />, link: "/lms/live-classes" },
-  { name: "Worksheets", icon: <FaFileAlt />, link: "/lms/worksheets" },
-  { name: "MCQ Practices", icon: <FaClipboardList />, link: "/studymonks/lms/mcq" },
-  { name: "Notices", icon: <FaBook />, link: "/lms/notices" },
-  { name: "Order History", icon: <FaShoppingCart />, link: "/lms/orders" },
-  { name: "My Referrals", icon: <FaUsers />, link: "/lms/referrals" },
-  { name: "Logout", icon: <FaSignOutAlt />, link: "/logout" },
-];
-
-export default function Sidebar() {
+export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>({
+    name: "Rukhsar",
+  }); // login hone ke baad naam aayega
 
   return (
-    <div
-      className={`fixed top-0 left-0 h-screen bg-[#112B7A] text-white flex flex-col transition-all duration-300 ${
-        isOpen ? "w-56" : "w-16"
-      }`}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
-    >
-      <div className="flex items-center justify-center py-4 text-xl font-bold border-b border-blue-900">
-        {isOpen ? "StudyMonks" : "SM"}
+    <header className="bg-[#0a2874] text-white">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
+        {/* Left - Logo + Nav */}
+        <div className="flex items-center gap-6">
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex gap-6 text-sm">
+            <a href="/dashboard" className="block hover:text-yellow-400">Dashboard</a>
+            <a href="/my-learning" className="block hover:text-yellow-400">My Learning</a>
+            <a href="/live-classes" className="block text-yellow-400">Live Classes</a>
+            <a href="/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
+            <a href="/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
+            <a href="/notices" className="block hover:text-yellow-400">Notices</a>
+            <a href="/order-history" className="block hover:text-yellow-400">Order History</a>
+            <a href="/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
+          </nav>
+        </div>
+
+        {/* Right - Class dropdown, notification, user */}
+        <div className="flex items-center gap-4">
+          {/* Class Dropdown */}
+          <select className="bg-[#1c3a8b] text-white rounded px-2 py-1 text-sm">
+            <option>Class 7</option>
+            <option>Class 8</option>
+            <option>Class 9</option>
+          </select>
+
+          {/* Notifications */}
+          <div className="relative">
+            <Bell className="h-6 w-6" />
+            <span className="absolute -top-2 -right-2 bg-red-500 text-xs px-1 rounded-full">
+              5
+            </span>
+          </div>
+
+          {/* User */}
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-black">
+              {user ? user.name.charAt(0) : "?"}
+            </div>
+            {user && <span className="hidden md:inline">{user.name}</span>}
+          </div>
+        </div>
       </div>
 
-      <nav className="flex-1 mt-4">
-        {menuItems.map((item, idx) => (
-          <a
-            key={idx}
-            href={item.link}
-            className="flex items-center gap-4 px-4 py-3 text-gray-200 hover:bg-blue-800 transition-colors"
-          >
-            <span className="text-lg">{item.icon}</span>
-            {isOpen && <span className="text-sm">{item.name}</span>}
-          </a>
-        ))}
-      </nav>
-    </div>
+      {/* Mobile Nav */}
+      {isOpen && (
+        <nav className="md:hidden bg-[#0a2874] px-4 py-3 space-y-2 text-sm">
+          <a href="/dashboard" className="block hover:text-yellow-400">Dashboard</a>
+          <a href="/my-learning" className="block hover:text-yellow-400">My Learning</a>
+          <a href="/live-classes" className="block text-yellow-400">Live Classes</a>
+          <a href="/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
+          <a href="/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
+          <a href="/notices" className="block hover:text-yellow-400">Notices</a>
+          <a href="/order-history" className="block hover:text-yellow-400">Order History</a>
+          <a href="/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
+        </nav>
+      )}
+    </header>
   );
 }
