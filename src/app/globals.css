@@ -60,9 +60,9 @@ body {
       .absolute span:nth-child(3) { width: 160px !important; height: 160px !important; }
     }
 h1 {
-    font-size: 30px !important;
-    font-family: gilroy-regular;
-    margin-bottom: 20px !important;
+    
+    font-family: Gilroy-Bold;
+   
 }
 h2, h4, h3{
    font-family: Gilroy-Bold;
