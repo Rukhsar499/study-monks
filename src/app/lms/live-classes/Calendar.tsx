@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import Image from "next/image";
@@ -61,6 +61,14 @@ export default function CalendarSection() {
   const [selectedClass, setSelectedClass] = useState<ClassData | null>(null);
   const [activeTab, setActiveTab] = useState("overview");
 
+  // ✅ Auto select first class of today's date
+  useEffect(() => {
+    const todayClasses = classesByDate[todayStr] || [];
+    if (todayClasses.length > 0) {
+      setSelectedClass(todayClasses[0]);
+    }
+  }, [todayStr]);
+
   // Dates range (-7, +7 days)
   const dates: Date[] = [];
   for (let i = -7; i <= 7; i++) {
@@ -81,23 +89,23 @@ export default function CalendarSection() {
 
   return (
     <div className="container mx-auto px-4 py-6">
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* LEFT SECTION */}
         <div className="lg:col-span-1">
           {/* Calendar Slider */}
           <Splide
             options={{
               perPage: 7,
-              start: 7, // today ko center ya last position pe lane ke liye
+              start: 7, 
               rewind: false,
               pagination: false,
               arrows: false,
               gap: "0.5rem",
               breakpoints: {
                
-                1024: { perPage: 5, start: 5 },
-                768: { perPage: 3, start: 3 },
-                480: { perPage: 2, start: 2 },
+                1024: { perPage: 6, start: 7 },
+                768: { perPage: 5, start: 7 },
+                480: { perPage: 4, start: 7 },
               },
             }}
             aria-label="Calendar Slider"
@@ -145,7 +153,7 @@ export default function CalendarSection() {
           </Splide>
 
           {/* Classes List */}
-          <div className="mt-4 space-y-3">
+          <div className="mt-4 space-y-3 ">
             {(classesByDate[selectedDate] || []).map((cls) => (
               <div
                 key={cls.id}
@@ -153,7 +161,7 @@ export default function CalendarSection() {
                   setSelectedClass(cls);
                   setActiveTab("overview");
                 }}
-                className={`p-3 bg-white rounded-lg shadow flex items-start gap-3 cursor-pointer hover:bg-blue-50 ${
+                className={`w-full p-3 bg-white rounded-lg shadow flex items-start gap-3 cursor-pointer hover:bg-blue-50 ${
                   selectedClass?.id === cls.id ? "border border-blue-500" : ""
                 }`}
               >
@@ -179,7 +187,7 @@ export default function CalendarSection() {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="bg-white rounded-lg shadow p-4">
+        <div className="bg-white rounded-lg shadow p-4 w-full">
           {selectedClass ? (
             <>
               {/* Header */}
@@ -236,11 +244,11 @@ export default function CalendarSection() {
               {/* Actions */}
               <div className="flex gap-3 mt-4">
                 {getClassStatus(selectedClass) === "upcoming" ? (
-                  <button className="px-4 py-2 bg-green-600 text-white rounded">
+                  <button className="px-8 py-3 bg-green-600 text-white rounded-xl text-[12px]">
                     Join Live Class
                   </button>
                 ) : (
-                  <button className="px-4 py-2 bg-blue-900 text-white rounded">
+                  <button className="px-8 py-3 bg-blue-900 text-white rounded-xl text-[12px]">
                     Watch Recording
                   </button>
                 )}
