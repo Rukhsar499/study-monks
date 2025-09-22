@@ -1,4 +1,5 @@
 "use client";
+import Notification from "../live-classes/Notification"
 
 
 export default function LivePage() {
@@ -8,6 +9,7 @@ export default function LivePage() {
                 <div className="container mx-auto px-4">
                     <h1 className="text-2xl font-bold">Live Classes Schedule</h1>
                 </div>
+                <Notification/>
             </section>
         </>
     );

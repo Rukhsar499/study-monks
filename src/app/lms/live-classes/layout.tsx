@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Sidebar from "../dashboard/components/Sidebar";
 
 export const metadata: Metadata = {
     title: 'Live Class',
@@ -12,8 +13,13 @@ export default function LiveLayout({
     children: React.ReactNode
   }) {
     return (
-        <>
-          {children}
-        </>
-    )
+            <>
+                <div className="bg-[#F0F3FF]">
+                    <Sidebar />
+    
+    
+                    {children}
+                </div>
+            </>
+        )
 }

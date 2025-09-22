@@ -23,14 +23,14 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex gap-6 text-sm">
-            <a href="/dashboard" className="block hover:text-yellow-400">Dashboard</a>
-            <a href="/my-learning" className="block hover:text-yellow-400">My Learning</a>
-            <a href="/live-classes" className="block text-yellow-400">Live Classes</a>
-            <a href="/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
-            <a href="/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
-            <a href="/notices" className="block hover:text-yellow-400">Notices</a>
-            <a href="/order-history" className="block hover:text-yellow-400">Order History</a>
-            <a href="/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
+            <a href="/lms/dashboard" className="block hover:text-yellow-400">Dashboard</a>
+            <a href="/lms/my-learning" className="block hover:text-yellow-400">My Learning</a>
+            <a href="/lms/live-classes" className="block text-yellow-400">Live Classes</a>
+            <a href="/lms/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
+            <a href="/lms/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
+            <a href="/lms/notices" className="block hover:text-yellow-400">Notices</a>
+            <a href="/lms/order-history" className="block hover:text-yellow-400">Order History</a>
+            <a href="/lms/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
           </nav>
         </div>
 
@@ -64,14 +64,14 @@ export default function Header() {
       {/* Mobile Nav */}
       {isOpen && (
         <nav className="md:hidden bg-[#0a2874] px-4 py-3 space-y-2 text-sm">
-          <a href="/dashboard" className="block hover:text-yellow-400">Dashboard</a>
-          <a href="/my-learning" className="block hover:text-yellow-400">My Learning</a>
-          <a href="/live-classes" className="block text-yellow-400">Live Classes</a>
-          <a href="/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
-          <a href="/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
-          <a href="/notices" className="block hover:text-yellow-400">Notices</a>
-          <a href="/order-history" className="block hover:text-yellow-400">Order History</a>
-          <a href="/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
+          <a href="/lms/dashboard" className="block hover:text-yellow-400">Dashboard</a>
+          <a href="/lms/my-learning" className="block hover:text-yellow-400">My Learning</a>
+          <a href="/lms/live-classes" className="block text-yellow-400">Live Classes</a>
+          <a href="/lms/worksheets" className="block hover:text-yellow-400">WorkSheets</a>
+          <a href="/lms/mcq-practices" className="block hover:text-yellow-400">MCQ Practices</a>
+          <a href="/lms/notices" className="block hover:text-yellow-400">Notices</a>
+          <a href="/lms/order-history" className="block hover:text-yellow-400">Order History</a>
+          <a href="/lms/my-referrals" className="block hover:text-yellow-400">My Referrals</a>
         </nav>
       )}
     </header>

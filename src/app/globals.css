@@ -12,7 +12,7 @@
 }
 
 body {
- 
+  background-color: #F0F3FF;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -60,7 +60,7 @@ body {
       .absolute span:nth-child(3) { width: 160px !important; height: 160px !important; }
     }
 h1 {
-    font-size: 50px !important;
+    font-size: 30px !important;
     font-family: gilroy-regular;
     margin-bottom: 20px !important;
 }

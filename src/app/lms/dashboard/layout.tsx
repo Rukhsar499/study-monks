@@ -14,7 +14,7 @@ export default function dashboardLayout({
 }) {
     return (
         <>
-            <div className="bg-gray-50">
+            <div className="">
                 <Sidebar />
 
 
