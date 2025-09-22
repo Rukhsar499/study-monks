@@ -1,6 +1,6 @@
 "use client";
 import Notification from "../live-classes/Notification"
-
+import Calendar from "../live-classes/Calendar"
 
 export default function LivePage() {
     return (
@@ -10,6 +10,7 @@ export default function LivePage() {
                     <h1 className="text-2xl font-bold">Live Classes Schedule</h1>
                 </div>
                 <Notification/>
+                <Calendar/>
             </section>
         </>
     );
