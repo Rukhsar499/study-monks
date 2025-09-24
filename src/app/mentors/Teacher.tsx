@@ -196,7 +196,7 @@ export default function TeacherList() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
           <div className="bg-white rounded-lg max-w-5xl w-full overflow-hidden relative">
             <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold cursor-pointer"
+              className="absolute w-8 h-8 rounded-full bg-[#00000031] top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold cursor-pointer"
               onClick={() => setShowModal(false)}
             >
               &times;
@@ -218,7 +218,7 @@ export default function TeacherList() {
                 </ul>
               </div>
               <div className="md:col-span-2">
-                <h3 className="text-2xl font-bold">{selectedTeacher.name}</h3>
+                <h3 className="text-xl text-[#01356C] font-bold">{selectedTeacher.name}</h3>
                 <h5 className="text-gray-600 mb-4">{selectedTeacher.qualification}</h5>
 
                 <div className="mb-4">
