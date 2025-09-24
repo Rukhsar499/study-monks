@@ -2,7 +2,8 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Teacher from "./Teacher"
+import Teacher from "./Teacher";
+import MentorAccordion from "../mentors/MentorAccordion";
 
 export default function Page() {
     return (
@@ -42,6 +43,7 @@ export default function Page() {
                     </div>
                 </div>
             </section>
+            <MentorAccordion />
             <Footer />
         </>
     );
