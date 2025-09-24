@@ -21,7 +21,7 @@ export default function CambridgePath() {
                         Mentors – Our Method Has a Heartbeat.
                     </h2>
                     <p className="text-gray-600 mb-4 leading-relaxed">
-                        A platform offers lessons, but a true mentor delivers a breakthrough. Our Mentors are more than experts in the Cambridge curriculum; they are experts in your child. And the right mentor can change a child's entire academic trajectory, unlocking their true potential.
+                        A platform offers lessons, but a true mentor delivers a breakthrough. Our Mentors are more than experts in the Cambridge curriculum; they are experts in your child. And the right mentor can change a child&apos;s entire academic trajectory, unlocking their true potential.
                     </p>
                     <p className="text-gray-600 mb-6 leading-relaxed">
                         Find that perfect mentor for your child. Unlock their potential.
