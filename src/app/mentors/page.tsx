@@ -11,7 +11,7 @@ export default function Page() {
     return (
         <>
             <Header />
-            <section className="mentr bg-[url('/assets/img/mentrbg1.webp')] bg-cover bg-center min-h-[600px] flex items-center mb-[30px] md:mb-[50px]">
+            <section className="mentr bg-[url('/assets/img/mentrbg1.webp')] bg-cover bg-center min-h-[600px] flex items-center">
                 <div className="max-w-7xl container mx-auto px-4">
                     <h1 className="md:text-[45px] text-[40px] text-[#003C79] font-bold">
                         Our Mentors
@@ -21,7 +21,9 @@ export default function Page() {
                     </p>
                 </div>
             </section>
-            <section className="mb-[30px] md:mb-[50px]">
+            <section className="container mx-auto max-w-7xl px-4mentr bg-[url('/assets/img/studys.webp')] bg-cover bg-center min-h-[280px] flex items-center"></section>
+
+            <section className="mb-[30px] md:mb-[50px] relative -mt-50">
                 <div className="max-w-7xl container mx-auto px-4">
                     <h2 className="text-[36px] font-bold text-center">Meet the Wise Guardians</h2>
                     <p className="text-center text-[14px] text-[#484848]">
