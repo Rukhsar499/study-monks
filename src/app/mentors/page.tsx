@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Teacher from "./Teacher";
 import MentorAccordion from "../mentors/MentorAccordion";
+import Section from "../mentors/Section"
+import Image from "next/image";
 
 export default function Page() {
     return (
@@ -29,10 +31,19 @@ export default function Page() {
             </section>
 
             <Teacher />
-            <section className="mb-[30px] md:mb-[100px] mt-[100px]">
+            {/* <section className="mb-[30px] md:mb-[100px] mt-[100px] relative">
+                <div className="absolute top-0 left-80 hidden md:block">
+                    <Image
+                        src="/assets/img/l-bh.png"
+                        alt="Mother and Child"
+                        width={250}
+                        height={250}
+                        className="z-10"
+                    />
+                </div>
                 <div className="max-w-7xl container mx-auto px-4">
                     <h2 className="text-[36px] font-bold text-center mb-5">Ready to Find the Perfect Teacher?</h2>
-                    <p className="text-center text-[14px] text-[#484848]">
+                    <p className="text-center text-[16px] text-[#484848]">
                         Schedule a complimentary Clarity Session to speak with one of our academic counselors and discuss how we can tailor a learning path for your child.
                     </p>
                     <div className="flex justify-center items-center mt-5">
@@ -42,7 +53,23 @@ export default function Page() {
                         </button>
                     </div>
                 </div>
-            </section>
+                <div className="absolute top-0 right-80 hidden md:block">
+                    <Image
+                        src="/assets/img/r-bh.png"
+                        alt="Mother and Child"
+                        width={250}
+                        height={250}
+                        className="z-10"
+                    />
+                </div>
+            </section> */}
+            <Section
+                title="Ready to Find the Perfect Teacher?"
+                description="Schedule a complimentary Clarity Session to speak with one of our academic counselors and discuss how we can tailor a learning path for your child."
+                buttonText="Schedule a clarity session"
+                leftImage="/assets/img/l-bh.png"
+                rightImage="/assets/img/r-bh.png"
+            />
             <MentorAccordion />
             <Footer />
         </>
