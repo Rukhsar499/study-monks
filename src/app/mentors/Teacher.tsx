@@ -141,7 +141,7 @@ export default function TeacherList() {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <section className="mb-[30px] md:mb-[50px] relaive -mt-40">
+    <section className="mb-[30px] md:mb-[50px] relaive -mt-35">
       <div className="max-w-7xl container mx-auto px-4">
         <div className="bg-[#001D36] px-6 py-8 rounded-2xl">
           <h2 className="text-[36px] font-bold mb-8 text-center text-[#fff]">Find the Right Guide for Your Child</h2>
