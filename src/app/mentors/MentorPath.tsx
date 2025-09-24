@@ -38,7 +38,7 @@ export default function CambridgePath() {
                         <Image
                             src="/assets/img/mentor-cta.png"
                             alt="Mother and Child"
-                            width={22   0}
+                            width={220}
                             height={250}
                             className="relative z-10"
                         />
