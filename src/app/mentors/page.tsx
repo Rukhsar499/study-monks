@@ -2,7 +2,7 @@
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Teacher from "../Teacher"
+import Teacher from "./Teacher"
 
 export default function Page() {
     return (
