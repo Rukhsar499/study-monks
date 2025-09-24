@@ -58,7 +58,7 @@ const teachers: Teacher[] = [
     ],
   },
   {
-    id: 2,
+    id: 4,
     name: "Dr. Rahul Verma",
     qualification: "PhD, Mathematics",
     intro: "Making numbers fun and easy for students with real-world applications.",
@@ -77,7 +77,7 @@ const teachers: Teacher[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "Dr. Rahul Verma",
     qualification: "PhD, Mathematics",
     intro: "Making numbers fun and easy for students with real-world applications.",
@@ -105,8 +105,8 @@ export default function TeacherList() {
   return (
     <section className="mb-[30px] md:mb-[50px]">
       <div className="max-w-7xl container mx-auto px-4">
-        <div className="bg-[#001D36] px-4 py-8 rounded-2xl">
-        <h2 className="text-3xl font-bold mb-8 text-center">Find the Right Guide for Your Child</h2>
+        <div className="bg-[#001D36] px-6 py-8 rounded-2xl">
+        <h2 className="text-[36px] font-bold mb-8 text-center text-[#fff]">Find the Right Guide for Your Child</h2>
         <div className="grid md:grid-cols-2 gap-8">
           {teachers.map((teacher) => (
             <div
@@ -124,8 +124,8 @@ export default function TeacherList() {
                   <Image
                     src={teacher.photo}
                     alt={teacher.name}
-                    width={300}
-                    height={200}
+                    width={250}
+                    height={150}
                     className="rounded-md"
                   />
                 </div>
@@ -134,13 +134,13 @@ export default function TeacherList() {
                   <p className="text-gray-600">{teacher.qualification}</p>
                   <p className="mt-2 text-gray-700">{teacher.intro}</p>
                   <button
-                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                    className="mt-4 px-4 py-2 text-[12px] bg-[#003C79] w-16 h-16 text-white rounded-full cursor-pointer"
                     onClick={() => {
                       setSelectedTeacher(teacher);
                       setShowModal(true);
                     }}
                   >
-                    View Profile
+                    View <br/> Profile
                   </button>
                 </div>
               </div>
