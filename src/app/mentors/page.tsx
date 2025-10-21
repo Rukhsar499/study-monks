@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Teacher from "./Teacher";
 import MentorAccordion from "../mentors/MentorAccordion";
 import Section from "../mentors/Section"
-import Image from "next/image";
+
 
 export default function Page() {
     return (
