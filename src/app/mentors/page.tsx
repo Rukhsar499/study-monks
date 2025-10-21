@@ -16,12 +16,12 @@ export default function Page() {
                     <h1 className="md:text-[45px] text-[40px] text-[#003C79] font-bold">
                         Our Mentors
                     </h1>
-                    <p className="text-[14px] text-gray-700">
-                        The Heart of the Study Monks Promise
-                    </p>
+                    <h5 className="text-[24px] text-[#484848] font-[500]">
+                        The Heartbeat of the Method
+                    </h5>
                 </div>
             </section>
-            <section className="container mx-auto max-w-7xl px-4mentr bg-[url('/assets/img/studys.webp')] bg-cover bg-center min-h-[280px] flex items-center"></section>
+            <section className="container mx-auto max-w-7xl px-4mentr bg-[url('/assets/img/studys.webp')] bg-cover bg-center min-h-[280px]  flex items-center"></section>
 
             <section className="mb-[30px] md:mb-[50px] relative -mt-50">
                 <div className="max-w-7xl container mx-auto px-4">
@@ -31,7 +31,7 @@ export default function Page() {
                     </p>
                 </div>
             </section>
-            <section className="container mx-auto max-w-7xl px-4mentr bg-[url('/assets/img/MONKS.webp')] bg-cover bg-center min-h-[280px] flex items-center"></section>
+            <section className="container mx-auto max-w-7xl px-4mentr bg-[url('/assets/img/MONKS.webp')] bg-cover bg-center min-h-[280px] flex items-center -mt-[40px]"></section>
             <Teacher />
 
             <Section

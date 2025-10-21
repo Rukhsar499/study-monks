@@ -64,7 +64,7 @@ h1 {
     font-family: Gilroy-Bold;
    
 }
-h2, h4, h3{
+h2, h4, h3, .t-nam{
    font-family: Gilroy-Bold;
 }
 .mb{
@@ -109,4 +109,5 @@ linear infinite alternate-reverse;
     opacity: 1;
   }
 }
+
       

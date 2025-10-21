@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import MentorPath from "../mentors/MentorPath";
 
 interface AccordionItem {
@@ -70,9 +70,9 @@ export default function BottomAccordion() {
                                     >
                                         <span className="font-poppins">{item.title}</span>
                                         {expanded === item.id ? (
-                                            <FaArrowLeft className="text-lg transition-colors" />
+                                            <FaArrowUp className="text-lg transition-colors" />
                                         ) : (
-                                            <FaArrowRight className="text-lg transition-colors" />
+                                            <FaArrowDown className="text-lg transition-colors" />
                                         )}
                                     </button>
 
