@@ -22,7 +22,7 @@ export default function SubscriptionAlert() {
     if (!notification) return null;
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 max-w-7xl">
             <div className="bg-[#ffff] text-sm md:px-4 md:py-5 px-2 py-3">
                 <span className="font-semibold text-[#0a2874] md:text-[16px] text-[14px]">Attention:</span>{" "}
                 Your subscription is going to expire for{" "}
