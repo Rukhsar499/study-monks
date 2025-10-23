@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { apiPost } from "../../lib/apiClient";
+import { apiProxy } from "../../lib/apiClient";
 
 interface LoginData {
   token: string;
@@ -28,7 +28,7 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      const res: ApiResponse<LoginData> = await apiPost<LoginData, { email: string; password: string; role: string }>(
+      const res: ApiResponse<LoginData> = await apiProxy<LoginData, { email: string; password: string; role: string }>(
         "/login",
         { email, password, role }
       );

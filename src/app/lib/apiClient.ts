@@ -1,28 +1,23 @@
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE as string;
 
-export interface ApiResponse<T> {
+export interface ApiResponse<T = unknown> {
   status: boolean;
-  message: string;
+  message?: string;
   data?: T;
 }
 
-export async function apiPost<TResponse, TBody extends Record<string, unknown>>(
+export async function apiProxy<T = unknown>(
   endpoint: string,
-  body: TBody
-): Promise<ApiResponse<TResponse>> {
-  const res = await fetch(`${API_BASE}${endpoint}`, {
+  body: Record<string, unknown>
+): Promise<ApiResponse<T>> {
+  const res = await fetch("/api/proxy", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ endpoint, body }),
   });
 
-  if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`API Error (${res.status}): ${errorText}`);
-  }
+  if (!res.ok) throw new Error(`API request failed with status ${res.status}`);
 
-  const data = (await res.json()) as ApiResponse<TResponse>;
+  const data: ApiResponse<T> = await res.json();
   return data;
 }

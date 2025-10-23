@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { apiPost } from "../../lib/apiClient";
+import { apiProxy } from "../../lib/apiClient";
 import { useRouter } from "next/navigation";
 import { GraduationCap } from "lucide-react";
 
@@ -10,13 +10,13 @@ export default function RegisterPage() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
   const [authMethod, setAuthMethod] = useState<"password" | "otp">("password");
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -25,33 +25,26 @@ export default function RegisterPage() {
   // Password registration
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (authMethod !== "password") return;
-
     setError("");
     setLoading(true);
 
-    if (form.password !== form.confirmPassword) {
-      setError("Passwords do not match!");
-      setLoading(false);
-      return;
-    }
-
     try {
-      const res = await apiPost("/register", {
+      const res = await apiProxy("v1/register", {
         name: form.name,
         email: form.email,
         password: form.password,
       });
+       console.log("Register response:", res);  
 
-      if (res.status === true) {
-        alert("Registration successful! Please login.");
-        router.push("/lms/login");
+      if (res.status) {
+        alert("Registration successful! OTP sent to your email.");
+        setOtpSent(true);
+        setShowOtpModal(true);
       } else {
         setError(res.message || "Registration failed");
       }
     } catch (err) {
-      if (err instanceof Error) setError(err.message);
-      else setError("An unexpected error occurred");
+      setError("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -62,9 +55,13 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiPost("/send-otp", { email: form.email });
-      if (res.status) setOtpSent(true);
-      else setError(res.message || "Failed to send OTP");
+      const res = await apiProxy("/v1/send-otp", { email: form.email });
+      if (res.status) {
+        setOtpSent(true);
+        setShowOtpModal(true);
+      } else {
+        setError(res.message || "Failed to send OTP");
+      }
     } catch (err) {
       setError("Something went wrong while sending OTP");
     } finally {
@@ -76,9 +73,10 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiPost("/verify-otp", { email: form.email, otp });
+      const res = await apiProxy("/v1/verify-otp", { email: form.email, otp });
       if (res.status) {
         alert("OTP verified! You are logged in.");
+        setShowOtpModal(false);
         router.push("/lms/dashboard");
       } else {
         setError(res.message || "OTP verification failed");
@@ -121,11 +119,7 @@ export default function RegisterPage() {
               setOtp("");
               setError("");
             }}
-            className={
-              authMethod === "password"
-                ? "font-bold text-blue-900"
-                : "text-gray-600"
-            }
+            className={authMethod === "password" ? "font-bold text-blue-900" : "text-gray-600"}
           >
             Password
           </button>
@@ -137,9 +131,7 @@ export default function RegisterPage() {
               setOtp("");
               setError("");
             }}
-            className={
-              authMethod === "otp" ? "font-bold text-blue-900" : "text-gray-600"
-            }
+            className={authMethod === "otp" ? "font-bold text-blue-900" : "text-gray-600"}
           >
             OTP
           </button>
@@ -178,15 +170,6 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 required
               />
-              <input
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                className="w-full border-b border-[#0000008a] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                value={form.confirmPassword}
-                onChange={handleChange}
-                required
-              />
 
               <button
                 type="submit"
@@ -208,7 +191,7 @@ export default function RegisterPage() {
                 required
                 disabled={otpSent}
               />
-              {!otpSent ? (
+              {!otpSent && (
                 <button
                   type="button"
                   onClick={handleSendOtp}
@@ -217,30 +200,39 @@ export default function RegisterPage() {
                 >
                   {loading ? "Sending OTP..." : "Send OTP"}
                 </button>
-              ) : (
-                <>
-                  <input
-                    type="text"
-                    name="otp"
-                    placeholder="Enter OTP"
-                    className="w-full border-b border-[#0000008a] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-900"
-                    value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={handleVerifyOtp}
-                    disabled={loading}
-                    className="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg transition-all mt-4"
-                  >
-                    {loading ? "Verifying OTP..." : "Verify OTP"}
-                  </button>
-                </>
               )}
             </>
           )}
         </form>
+
+        {/* OTP Modal */}
+        {showOtpModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+            <div className="bg-white p-6 rounded-lg w-80">
+              <h2 className="text-lg font-bold mb-3">Enter OTP</h2>
+              <input
+                type="text"
+                placeholder="OTP"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                className="w-full border-b border-gray-400 px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-900 rounded"
+              />
+              <button
+                onClick={handleVerifyOtp}
+                disabled={loading}
+                className="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg"
+              >
+                {loading ? "Verifying..." : "Verify OTP"}
+              </button>
+              <button
+                onClick={() => setShowOtpModal(false)}
+                className="mt-2 w-full text-gray-700 underline text-sm"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
 
         <p className="text-sm text-center mt-4 text-gray-600">
           Already have an account?{" "}
