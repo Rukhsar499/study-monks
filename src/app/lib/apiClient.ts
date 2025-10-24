@@ -10,14 +10,20 @@ export async function apiProxy<T = unknown>(
   endpoint: string,
   body: Record<string, unknown>
 ): Promise<ApiResponse<T>> {
-  const res = await fetch("/api/proxy", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ endpoint, body }),
-  });
+  const res = await fetch("https://learning.studymonks.com/api/v1/register", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ endpoint, body }),
+});
 
-  if (!res.ok) throw new Error(`API request failed with status ${res.status}`);
+const text = await res.text();
+console.log("Fetch response text:", text);
 
-  const data: ApiResponse<T> = await res.json();
-  return data;
+let data: ApiResponse<T>;
+try {
+  data = JSON.parse(text);
+} catch (err) {
+  data = { status: false, message: "Invalid JSON response from API" };
+}
+return data;
 }

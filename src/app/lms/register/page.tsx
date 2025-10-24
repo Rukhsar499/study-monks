@@ -29,12 +29,12 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const res = await apiProxy("v1/register", {
+      const res = await apiProxy("/api/v1/register", {
         name: form.name,
         email: form.email,
         password: form.password,
       });
-       console.log("Register response:", res);  
+      console.log("Register response:", res);
 
       if (res.status) {
         alert("Registration successful! OTP sent to your email.");
@@ -44,6 +44,7 @@ export default function RegisterPage() {
         setError(res.message || "Registration failed");
       }
     } catch (err) {
+      console.error("Registration error:", err);  // use it here
       setError("Something went wrong");
     } finally {
       setLoading(false);
@@ -55,7 +56,7 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiProxy("/v1/send-otp", { email: form.email });
+      const res = await apiProxy("v1/send-otp", { email: form.email });
       if (res.status) {
         setOtpSent(true);
         setShowOtpModal(true);
@@ -73,7 +74,7 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiProxy("/v1/verify-otp", { email: form.email, otp });
+      const res = await apiProxy("v1/verify-otp", { email: form.email, otp });
       if (res.status) {
         alert("OTP verified! You are logged in.");
         setShowOtpModal(false);
