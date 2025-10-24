@@ -29,7 +29,7 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const res = await apiProxy("/api/v1/register", {
+      const res = await apiProxy("", {
         name: form.name,
         email: form.email,
         password: form.password,

@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import Image from "next/image";
+import { Download, Play, Video } from "lucide-react";
+import { Mic, ScreenShare, X } from "lucide-react";
 
-// Dummy classes data (later API se ayega)
+// Dummy classes data (replace with API later)
 interface ClassData {
   id: number;
   title: string;
@@ -15,53 +17,29 @@ interface ClassData {
 }
 
 const classesByDate: Record<string, ClassData[]> = {
-  "2025-09-22": [
-    {
-      id: 1,
-      title: "Definition of Photosynthesis",
-      subject: "Mathematics",
-      time: "4:00 PM",
-      details: "This session covers the fundamentals of photosynthesis.",
-      date: "2025-09-22",
-    },
-    {
-      id: 2,
-      title: "Advanced Geometry",
-      subject: "Mathematics",
-      time: "6:00 PM",
-      details: "Deep dive into geometry basics and fundamentals.",
-      date: "2025-09-22",
-    },
+  "2025-10-22": [
+    { id: 1, title: "Definition of Photosynthesis", subject: "Mathematics", time: "4:00 PM", details: "This session covers the fundamentals of photosynthesis.", date: "2025-10-22" },
+    { id: 2, title: "Advanced Geometry", subject: "Mathematics", time: "6:00 PM", details: "Deep dive into geometry basics and fundamentals.", date: "2025-10-22" },
   ],
-  "2025-09-24": [
-    {
-      id: 3,
-      title: "Introduction to Algebra",
-      subject: "Mathematics",
-      time: "5:00 PM",
-      details: "Overview of algebraic expressions.",
-      date: "2025-09-24",
-    },
-    {
-      id: 4,
-      title: "Basics of Trigonometry",
-      subject: "Mathematics",
-      time: "7:00 PM",
-      details: "Understanding sin, cos, and tan.",
-      date: "2025-09-24",
-    },
+  "2025-10-24": [
+    { id: 3, title: "Introduction to Algebra", subject: "Mathematics", time: "5:00 PM", details: "Overview of algebraic expressions.", date: "2025-10-24" },
+    { id: 4, title: "Basics of Trigonometry", subject: "Mathematics", time: "7:00 PM", details: "Understanding sin, cos, and tan.", date: "2025-10-24" },
   ],
 };
 
 export default function CalendarSection() {
-  const today = new Date("2025-09-22"); // Later dynamically new Date()
+  const today = new Date("2025-10-22");
   const todayStr = today.toISOString().split("T")[0];
 
   const [selectedDate, setSelectedDate] = useState(todayStr);
   const [selectedClass, setSelectedClass] = useState<ClassData | null>(null);
   const [activeTab, setActiveTab] = useState("overview");
 
-  // ✅ Auto select first class of today's date
+  // Full screen modal states
+  const [fullScreenClass, setFullScreenClass] = useState<ClassData | null>(null);
+  const [isRecording, setIsRecording] = useState(false);
+
+  // Auto-select first class of the day
   useEffect(() => {
     const todayClasses = classesByDate[todayStr] || [];
     if (todayClasses.length > 0) {
@@ -78,10 +56,8 @@ export default function CalendarSection() {
   }
 
   const formatDate = (d: Date) => d.toISOString().split("T")[0];
-  const getDay = (d: Date) =>
-    d.toLocaleDateString("en-US", { weekday: "short" });
+  const getDay = (d: Date) => d.toLocaleDateString("en-US", { weekday: "short" });
 
-  // Class status (Upcoming / Completed)
   const getClassStatus = (cls: ClassData) => {
     const classDateTime = new Date(`${cls.date} ${cls.time}`);
     return classDateTime > new Date() ? "upcoming" : "completed";
@@ -96,13 +72,12 @@ export default function CalendarSection() {
           <Splide
             options={{
               perPage: 7,
-              start: 7, 
+              start: 7,
               rewind: false,
               pagination: false,
               arrows: false,
               gap: "0.5rem",
               breakpoints: {
-               
                 1024: { perPage: 6, start: 7 },
                 768: { perPage: 5, start: 7 },
                 480: { perPage: 4, start: 7 },
@@ -125,26 +100,19 @@ export default function CalendarSection() {
                       setSelectedClass(null);
                     }}
                     className={`w-16 h-20 flex flex-col items-center justify-center rounded-lg cursor-pointer mx-auto
-                      ${
-                        isToday
-                          ? "bg-green-600 text-white"
-                          : isSelected
+                      ${isToday
+                        ? "bg-green-600 text-white"
+                        : isSelected
                           ? "bg-yellow-400 text-black"
                           : "bg-white text-black border"
-                      }
-                    `}
+                      }`}
                   >
                     <span className="text-lg font-bold">{d.getDate()}</span>
                     <span className="text-xs">{getDay(d)}</span>
                     <div className="flex gap-1 mt-1">
-                      {Array(dotCount)
-                        .fill(0)
-                        .map((_, i) => (
-                          <span
-                            key={i}
-                            className="w-1.5 h-1.5 rounded-full bg-red-500"
-                          />
-                        ))}
+                      {Array(dotCount).fill(0).map((_, i) => (
+                        <span key={i} className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                      ))}
                     </div>
                   </div>
                 </SplideSlide>
@@ -153,7 +121,7 @@ export default function CalendarSection() {
           </Splide>
 
           {/* Classes List */}
-          <div className="mt-4 space-y-3 ">
+          <div className="mt-4 space-y-3">
             {(classesByDate[selectedDate] || []).map((cls) => (
               <div
                 key={cls.id}
@@ -161,28 +129,16 @@ export default function CalendarSection() {
                   setSelectedClass(cls);
                   setActiveTab("overview");
                 }}
-                className={`w-full p-3 bg-white rounded-lg shadow flex items-start gap-3 cursor-pointer hover:bg-blue-50 ${
-                  selectedClass?.id === cls.id ? "border border-blue-500" : ""
-                }`}
+                className={`w-full p-3 bg-white rounded-lg shadow flex items-start gap-3 cursor-pointer hover:bg-blue-50 ${selectedClass?.id === cls.id ? "border border-blue-500" : ""}`}
               >
-                <Image
-                  src="/assets/img/adn-icon.png"
-                  alt="Class Icon"
-                  width={40}
-                  height={40}
-                />
+                <Image src="/assets/img/adn-icon.png" alt="Class Icon" width={40} height={40} />
                 <div>
                   <h3 className="font-medium text-blue-900">{cls.title}</h3>
-                  <p className="text-sm text-gray-600">
-                    {cls.subject} • {cls.time}
-                  </p>
+                  <p className="text-sm text-gray-600">{cls.subject} • {cls.time}</p>
                 </div>
               </div>
             ))}
-
-            {(classesByDate[selectedDate] || []).length === 0 && (
-              <p className="text-gray-500 text-sm">No classes for this date.</p>
-            )}
+            {(classesByDate[selectedDate] || []).length === 0 && <p className="text-gray-500 text-sm">No classes for this date.</p>}
           </div>
         </div>
 
@@ -193,22 +149,14 @@ export default function CalendarSection() {
               {/* Header */}
               <div className="flex items-center justify-between mb-3">
                 <div>
-                  <h2 className="font-semibold text-lg text-blue-900">
-                    {selectedClass.title}
-                  </h2>
-                  <p className="text-sm text-gray-600">
-                    {selectedClass.subject} • {selectedClass.time}
-                  </p>
+                  <h2 className="font-semibold text-lg text-blue-900">{selectedClass.title}</h2>
+                  <p className="text-sm text-gray-600">{selectedClass.subject} • {selectedClass.time}</p>
                 </div>
                 <div className="flex gap-2">
                   {getClassStatus(selectedClass) === "upcoming" ? (
-                    <span className="bg-yellow-400 text-black text-xs px-2 py-1 rounded">
-                      Upcoming
-                    </span>
+                    <span className="bg-yellow-400 text-black text-xs px-2 py-1 rounded">Upcoming</span>
                   ) : (
-                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">
-                      Completed
-                    </span>
+                    <span className="bg-green-500 text-white text-xs px-2 py-1 rounded">Completed</span>
                   )}
                 </div>
               </div>
@@ -219,11 +167,7 @@ export default function CalendarSection() {
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`px-3 py-1 text-sm rounded ${
-                      activeTab === tab
-                        ? "bg-green-600 text-white"
-                        : "bg-gray-200"
-                    }`}
+                    className={`px-3 py-1 text-sm rounded ${activeTab === tab ? "bg-green-600 text-white" : "bg-[#F0F3FF]"}`}
                   >
                     {tab.charAt(0).toUpperCase() + tab.slice(1)}
                   </button>
@@ -234,33 +178,89 @@ export default function CalendarSection() {
               <div className="text-sm text-gray-700">
                 {activeTab === "overview" && <p>{selectedClass.details}</p>}
                 {activeTab === "classwork" && (
-                  <p>Classwork content will come from API.</p>
+                  <div className="space-y-2 mt-6">
+                    {["This is a Class work document (pdf)"].map((item, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-[#F0F3FF] rounded-xl shadow-sm">
+                        <span>{item}</span>
+                        <button className="p-2 text-blue-600 rounded hover:bg-gray-200"><Download size={16} /></button>
+                      </div>
+                    ))}
+                  </div>
                 )}
                 {activeTab === "homework" && (
-                  <p>Homework content will come from API.</p>
+                  <div className="space-y-2 mt-6">
+                    {["This is a Homework document (pdf)"].map((item, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-[#F0F3FF] rounded-xl shadow-sm">
+                        <span>{item}</span>
+                        <div className="flex gap-2">
+                          <button className="px-3 py-1 text-xs bg-[#182C74] text-white rounded-xl">View</button>
+                          <button className="p-2 text-blue-600 rounded hover:bg-gray-200"><Download size={16} /></button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 )}
               </div>
 
               {/* Actions */}
-              <div className="flex gap-3 mt-4">
-                {getClassStatus(selectedClass) === "upcoming" ? (
-                  <button className="px-8 py-3 bg-green-600 text-white rounded-xl text-[12px]">
-                    Join Live Class
-                  </button>
-                ) : (
-                  <button className="px-8 py-3 bg-blue-900 text-white rounded-xl text-[12px]">
-                    Watch Recording
-                  </button>
-                )}
-              </div>
+              {activeTab === "overview" && (
+                <div className="flex gap-3 mt-4">
+                  {getClassStatus(selectedClass) === "upcoming" ? (
+                    <button
+                      className="px-8 py-3 bg-green-600 text-white rounded-xl text-[12px] flex items-center gap-2"
+                      onClick={() => {
+                        setFullScreenClass(selectedClass);
+                        setIsRecording(false);
+                      }}
+                    >
+                      <Play size={16} /> Join Live Class
+                    </button>
+                  ) : (
+                    <button
+                      className="px-8 py-3 bg-blue-900 text-white rounded-xl text-[12px] flex items-center gap-2"
+                      onClick={() => {
+                        setFullScreenClass(selectedClass);
+                        setIsRecording(true);
+                      }}
+                    >
+                      <Video size={16} /> Watch Recording
+                    </button>
+                  )}
+                </div>
+              )}
             </>
           ) : (
-            <p className="text-gray-500 text-sm">
-              Select a class to view details.
-            </p>
+            <p className="text-gray-500 text-sm">Select a class to view details.</p>
           )}
         </div>
       </div>
+
+      {/* FULL-SCREEN MODAL */}
+      {fullScreenClass && (
+        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col">
+          <div className="flex justify-between items-center p-4 bg-gray-900">
+            <h2 className="text-white text-lg font-semibold">{fullScreenClass.title}</h2>
+            <button
+              className="text-white bg-red-600 px-3 py-1 rounded"
+              onClick={() => setFullScreenClass(null)}
+            >
+              Close
+            </button>
+          </div>
+
+          <div className="flex-1 flex items-center justify-center text-white text-xl">
+            {isRecording ? "Playing Recorded Video..." : "Live Class Streaming..."}
+          </div>
+
+          {!isRecording && (
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-4 bg-gray-900 bg-opacity-70 px-4 py-2 rounded-full items-center">
+              <button className="bg-gray-700 p-3 rounded-full hover:bg-gray-600"><Mic size={20} /></button>
+              <button className="bg-gray-700 p-3 rounded-full hover:bg-gray-600"><Video size={20} /></button>
+              <button className="bg-gray-700 p-3 rounded-full hover:bg-gray-600"><ScreenShare size={20} /></button>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
