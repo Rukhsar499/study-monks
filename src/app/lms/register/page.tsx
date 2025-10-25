@@ -10,6 +10,7 @@ export default function RegisterPage() {
     name: "",
     email: "",
     password: "",
+    password_confirmation: "",
   });
   const [authMethod, setAuthMethod] = useState<"password" | "otp">("password");
   const [otpSent, setOtpSent] = useState(false);
@@ -29,14 +30,16 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const res = await apiProxy("", {
+      const res = await apiProxy("/register", {
         name: form.name,
         email: form.email,
         password: form.password,
+        password_confirmation: form.password,
+        class_room_id: 1, 
       });
       console.log("Register response:", res);
 
-      if (res.status) {
+      if (res.success) {
         alert("Registration successful! OTP sent to your email.");
         setOtpSent(true);
         setShowOtpModal(true);
@@ -44,7 +47,7 @@ export default function RegisterPage() {
         setError(res.message || "Registration failed");
       }
     } catch (err) {
-      console.error("Registration error:", err);  // use it here
+      console.error("Registration error:", err); 
       setError("Something went wrong");
     } finally {
       setLoading(false);
@@ -56,8 +59,8 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiProxy("v1/send-otp", { email: form.email });
-      if (res.status) {
+      const res = await apiProxy("/send-otp", { email: form.email });
+      if (res.success) {
         setOtpSent(true);
         setShowOtpModal(true);
       } else {
@@ -74,11 +77,11 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await apiProxy("v1/verify-otp", { email: form.email, otp });
-      if (res.status) {
+      const res = await apiProxy("/verify-otp", { email: form.email, otp });
+      if (res.success) {
         alert("OTP verified! You are logged in.");
         setShowOtpModal(false);
-        router.push("/lms/dashboard");
+        router.push("/login");
       } else {
         setError(res.message || "OTP verification failed");
       }
@@ -165,6 +168,15 @@ export default function RegisterPage() {
               <input
                 type="password"
                 name="password"
+                placeholder="Password"
+                className="w-full border-b border-[#0000008a] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-900"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+               <input
+                type="password"
+                name="password_confirmation"
                 placeholder="Password"
                 className="w-full border-b border-[#0000008a] rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-900"
                 value={form.password}
