@@ -35,7 +35,7 @@ export default function ClassPage() {
           <button
             key={tab}
             className={`pb-2 rounded-xl px-4 py-2 ${
-              activeTab === tab ? "bg-[#182C74] text-[#fff]" : "bg-gray-200"
+              activeTab === tab ? "bg-[#309F5C] text-[#fff]" : "bg-[#fff]"
             }`}
             onClick={() => setActiveTab(tab as Tab)}
           >
