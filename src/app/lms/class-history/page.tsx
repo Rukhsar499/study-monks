@@ -83,18 +83,18 @@ export default function ClassHistory() {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b mb-4">
+      <div className="flex mb-7">
         <button
-          className={`px-4 py-2 -mb-px font-medium border-b-2 ${
-            activeTab === "upcoming" ? "border-blue-500 text-blue-500" : "border-transparent"
+          className={`px-4 py-2 -mb-px font-medium rounded-xl mr-4  ${
+            activeTab === "upcoming" ? "bg-[#182C74] text-[#fff]" : "bg-gray-200"
           }`}
           onClick={() => setActiveTab("upcoming")}
         >
           Upcoming Classes
         </button>
         <button
-          className={`px-4 py-2 -mb-px font-medium border-b-2 ${
-            activeTab === "past" ? "border-blue-500 text-blue-500" : "border-transparent"
+          className={`px-4 py-2 -mb-px font-medium rounded-xl ${
+            activeTab === "past" ? "bg-[#182C74] text-[#fff]" : "bg-gray-200"
           }`}
           onClick={() => setActiveTab("past")}
         >
