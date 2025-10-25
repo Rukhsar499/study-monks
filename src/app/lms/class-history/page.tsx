@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Notification from "../live-classes/Notification"
 
 interface ClassItem {
   id: number;
@@ -59,12 +60,16 @@ export default function ClassHistory() {
   }, [selectedSubject, activeTab, searchDate, searchTopic]);
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <>
+    
+    <section className="bg-[#f0f3ff] min-h-screen pt-10">
+        
+     <div className="container mx-auto p-6 max-w-7xl bg-[#fff]  rounded-lg shadow-md">
       {/* Heading + Subject Dropdown */}
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Class History</h2>
+        <h2 className="text-[24px] font-bold text-[#182C74]">Class History</h2>
         <select
-          className="border border-gray-300 rounded px-3 py-1"
+          className="bg-[#182C74] text-[#fff] rounded-xl px-3 py-2"
           value={selectedSubject}
           onChange={(e) => setSelectedSubject(e.target.value)}
         >
@@ -133,6 +138,8 @@ export default function ClassHistory() {
         )}
       </div>
     </div>
+    </section>
+    </>
   );
 }
     
