@@ -1,19 +1,43 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X, Bell } from "lucide-react";
-import { usePathname } from "next/navigation"; // 👈 Import this
+import { usePathname } from "next/navigation";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [user, setUser] = useState<{ name: string } | null>({ name: "Rukhsar" });
-  const pathname = usePathname(); // 👈 Current path milega
+  const [user, setUser] = useState<{ name: string } | null>({
+    name: "Rukhsar Sheikh",
+  });
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const pathname = usePathname();
 
-  // helper function for active class
+  // helper function for active link
   const isActive = (path: string) =>
     pathname === path ? "text-yellow-400" : "hover:text-yellow-400";
 
+  // close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // get initials from user name
+  const getInitials = (name: string) => {
+    const parts = name.trim().split(" ");
+    if (parts.length === 1) return parts[0].charAt(0).toUpperCase();
+    return (
+      parts[0].charAt(0).toUpperCase() + parts[parts.length - 1].charAt(0).toUpperCase()
+    );
+  };
+
   return (
-    <header className="bg-[#0a2874] text-white">
+    <header className="bg-[#0a2874] text-white relative">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4">
         {/* Left - Logo + Nav */}
         <div className="flex items-center gap-6">
@@ -60,17 +84,50 @@ export default function Header() {
           </select>
 
           <div className="relative">
-            <Bell className="h-6 w-6" />
+            <Bell className="h-6 w-6 cursor-pointer" />
             <span className="absolute -top-2 -right-2 bg-red-500 text-xs px-1 rounded-full">
               5
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-black">
-              {user ? user.name.charAt(0) : "?"}
+          {/* User avatar and dropdown */}
+          <div className="relative" ref={dropdownRef}>
+            <div
+              className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-black cursor-pointer select-none"
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              {user ? getInitials(user.name) : "?"}
             </div>
-            {user && <span className="hidden md:inline">{user.name}</span>}
+
+            {/* Dropdown */}
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-44 bg-white text-black rounded-md shadow-lg py-2 text-sm z-50">
+                <p className="px-4 py-2 text-gray-700 border-b font-semibold">
+                  {user?.name}
+                </p>
+                <a
+                  href="/lms/my-referrals"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  My Referrals
+                </a>
+                <a
+                  href="/lms/subscription"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                >
+                  Subscription
+                </a>
+                <button
+                  onClick={() => {
+                    setUser(null);
+                    setDropdownOpen(false);
+                  }}
+                  className="w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
