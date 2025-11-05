@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import { ZoomMtg } from "@zoom/meetingsdk";
 
 type Tab = "recorded" | "classwork" | "homework" | "summary";
 type HomeworkSubTab = "worksheet" | "student" | "invigilated";
@@ -9,8 +10,8 @@ type HomeworkSubTab = "worksheet" | "student" | "invigilated";
 interface PdfItem {
   id: number;
   title: string;
-  subtitle: string;
-  icon: string;
+  subtitle?: string;
+  icon?: string;
   fileUrl: string;
   worksheet?: string;
   studentAnswer?: string;
@@ -23,7 +24,7 @@ export default function ClassPage() {
   const [activeHomeworkTab, setActiveHomeworkTab] =
     useState<HomeworkSubTab>("worksheet");
 
-  // Dummy Data
+  // 🔹 Dummy Data
   const classworkPdfs: PdfItem[] = [
     {
       id: 1,
@@ -64,6 +65,41 @@ export default function ClassPage() {
     },
   ];
 
+  // 🔹 Zoom SDK Integration (Recorded Tab)
+  useEffect(() => {
+    if (activeTab !== "recorded") return; // initialize Zoom only when tab is active
+
+    ZoomMtg.setZoomJSLib("https://source.zoom.us/3.0.2/lib", "/av");
+    ZoomMtg.preLoadWasm();
+    ZoomMtg.prepareWebSDK();
+
+    const meetConfig = {
+      sdkKey: "YOUR_ZOOM_SDK_KEY",
+      signature: "YOUR_GENERATED_SIGNATURE",
+      meetingNumber: "YOUR_MEETING_ID",
+      userName: "Student Name",
+      passWord: "YOUR_MEETING_PASSWORD",
+      role: 0,
+      leaveUrl: "https://your-website.com",
+    };
+
+    ZoomMtg.init({
+      leaveUrl: meetConfig.leaveUrl,
+      success: () => {
+        ZoomMtg.join({
+          signature: meetConfig.signature,
+          sdkKey: meetConfig.sdkKey,
+          meetingNumber: meetConfig.meetingNumber,
+          userName: meetConfig.userName,
+          passWord: meetConfig.passWord,
+          success: () => console.log("✅ Zoom meeting joined successfully"),
+          error: (err: unknown) => console.error("Zoom Join Error:", err),
+        });
+      },
+      error: (err: unknown) => console.error("Zoom Init Error:", err),
+    });
+  }, [activeTab]);
+
   return (
     <div className="p-4 container mx-auto max-w-7xl min-h-screen">
       {/* Tabs */}
@@ -71,11 +107,10 @@ export default function ClassPage() {
         {["recorded", "classwork", "homework", "summary"].map((tab) => (
           <button
             key={tab}
-            className={`pb-2 rounded-xl px-4 py-2 text-sm md:text-base transition-all duration-200 ${
-              activeTab === tab
+            className={`pb-2 rounded-xl px-4 py-2 text-sm md:text-base transition-all duration-200 ${activeTab === tab
                 ? "bg-[#309F5C] text-white shadow-md"
                 : "bg-white border text-gray-700 hover:bg-gray-100"
-            }`}
+              }`}
             onClick={() => {
               setActiveTab(tab as Tab);
               setSelectedPdf(null);
@@ -87,31 +122,29 @@ export default function ClassPage() {
       </div>
 
       {/* Content */}
-      <div className="bg-white p-4 rounded-xl shadow-md">
+      <div className="">
         {/* 1️⃣ Recorded Tab */}
         {activeTab === "recorded" && (
           <div className="w-full h-[500px] bg-gray-100 flex items-center justify-center rounded-md">
-            <iframe
-              src="https://zoom.us"
-              className="w-full h-full border rounded-md"
-              title="Zoom Recorded Class"
-            ></iframe>
+            <div id="zmmtg-root"></div>
           </div>
         )}
 
         {/* 2️⃣ Classwork Tab (Only Left Side List) */}
         {activeTab === "classwork" && (
-          <div className="border rounded-md p-3 bg-gray-50">
+          <div className=" p-3">
             {classworkPdfs.map((pdf) => (
               <div
                 key={pdf.id}
-                className="flex items-center justify-between bg-white p-3 mb-3 rounded-md shadow-sm hover:shadow-md transition"
+                className="flex items-center justify-between bg-white p-3 mb-3 rounded-2xl shadow-sm hover:shadow-md transition"
               >
                 <div className="flex items-center gap-3">
                   <Image
                     src="/assets/img/pdfs.png"
                     alt="PDF Icon"
-                    className="w-10 h-10 object-contain"
+                    className=""
+                    width={40}
+                    height={40}
                   />
                   <div>
                     <h3 className="font-semibold text-sm md:text-base">
@@ -136,22 +169,23 @@ export default function ClassPage() {
         {activeTab === "homework" && (
           <div className="flex flex-col md:flex-row gap-4">
             {/* Left Section */}
-            <div className="md:w-1/3 border rounded-md p-3 bg-gray-50">
+            <div className="md:w-1/3 bg-gray-50">
               {homeworkPdfs.map((pdf) => (
                 <div
                   key={pdf.id}
                   onClick={() => setSelectedPdf(pdf)}
-                  className={`flex items-center justify-between bg-white p-3 mb-3 rounded-md cursor-pointer shadow-sm hover:shadow-md transition ${
-                    selectedPdf?.id === pdf.id
+                  className={`flex items-center justify-between bg-white p-3 mb-3 rounded- cursor-pointer shadow-sm hover:shadow-md transition ${selectedPdf?.id === pdf.id
                       ? "border-l-4 border-[#309F5C]"
                       : ""
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-3">
                     <Image
-                      src="/assets/img/"
+                      src="/assets/img/pdfs.png"
                       alt="PDF Icon"
-                      className="w-10 h-10 object-contain"
+                      className=""
+                      width={40}
+                      height={40}
                     />
                     <div>
                       <h3 className="font-semibold text-sm md:text-base">
@@ -173,11 +207,10 @@ export default function ClassPage() {
                     {["worksheet", "student", "invigilated"].map((tab) => (
                       <button
                         key={tab}
-                        className={`px-3 py-1 rounded-md text-sm whitespace-nowrap transition-all duration-200 ${
-                          activeHomeworkTab === tab
+                        className={`px-3 py-1 rounded-md text-sm whitespace-nowrap transition-all duration-200 ${activeHomeworkTab === tab
                             ? "bg-[#309F5C] text-white"
                             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                        }`}
+                          }`}
                         onClick={() =>
                           setActiveHomeworkTab(tab as HomeworkSubTab)
                         }
@@ -185,8 +218,8 @@ export default function ClassPage() {
                         {tab === "worksheet"
                           ? "Worksheet"
                           : tab === "student"
-                          ? "Student Answer"
-                          : "Invigilated Answer"}
+                            ? "Student Answer"
+                            : "Invigilated Answer"}
                       </button>
                     ))}
                   </div>
