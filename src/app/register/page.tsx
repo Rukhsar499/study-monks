@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { apiProxy } from "../../lib/apiClient";
+import { apiProxy } from "../lib/apiClient";
 import { useRouter } from "next/navigation";
 import { GraduationCap } from "lucide-react";
 import Link from "next/link";
