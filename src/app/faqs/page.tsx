@@ -13,13 +13,21 @@ export default function FAQPage() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const toggleFaq = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
   useEffect(() => {
     async function fetchFaqs() {
       try {
-        const res = await fetch("https://learning.studymonks.com/api/v1/faqs");
+        const res = await fetch("https://learning.studymonks.com/api/v1/faqs"); // ✅ Correct path
         const json = await res.json();
-        if (json.success) {
+        console.log("Response JSON:", json);
+
+        if (json.success && json.data) {
           setFaqs(json.data);
+        } else {
+          console.error("Invalid response:", json);
         }
       } catch (error) {
         console.error("Failed to load FAQs:", error);
@@ -29,10 +37,6 @@ export default function FAQPage() {
     }
     fetchFaqs();
   }, []);
-
-  const toggleFaq = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
 
   if (loading) {
     return (
@@ -46,7 +50,7 @@ export default function FAQPage() {
     <section className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-10">
-          Frequently Asked Question
+          Frequently Asked Questions
         </h1>
 
         <div className="space-y-4">
@@ -76,13 +80,13 @@ export default function FAQPage() {
               )}
             </div>
           ))}
-        </div>
 
-        {faqs.length === 0 && (
-          <p className="text-center text-gray-500 mt-10">
-            No FAQs available at the moment.
-          </p>
-        )}
+          {faqs.length === 0 && (
+            <p className="text-center text-gray-500 mt-10">
+              No FAQs available at the moment.
+            </p>
+          )}
+        </div>
       </div>
 
       <style jsx>{`

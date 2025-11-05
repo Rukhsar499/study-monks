@@ -3,6 +3,7 @@ import { useState } from "react";
 import { apiProxy } from "../../lib/apiClient";
 import { useRouter } from "next/navigation";
 import { GraduationCap } from "lucide-react";
+import Link from "next/link";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -249,12 +250,12 @@ export default function RegisterPage() {
 
         <p className="text-sm text-center mt-4 text-gray-600">
           Already have an account?{" "}
-          <a
+          <Link
             href="/lms/login"
             className="text-blue-900 font-medium hover:underline"
           >
             Login here
-          </a>
+          </Link>
         </p>
 
         {/* Decorative circles */}
